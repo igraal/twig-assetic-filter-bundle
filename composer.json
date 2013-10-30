@@ -1,0 +1,26 @@
+{
+    "name": "igraal/twig-assetic-filter-bundle",
+    "type": "symfony-bundle",
+    "description": "Twig Assetic Filter Bundle for Symfony",
+    "keywords": ["Twig Filter", "Assetic"],
+    "homepage": "http://www.igraal.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "iGraal"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "kriswallsmith/assetic": "~1.0"
+    },
+    "autoload": {
+        "psr-0": { "IgraalOSB\\TwigAsseticFilterBundle": "" }
+    },
+    "target-dir": "IgraalOSB/TwigAsseticFilterBundle",
+    "extra": {
+        "branch-alias": "1.0-dev"
+    }
+}
