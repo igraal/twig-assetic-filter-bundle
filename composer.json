@@ -21,6 +21,8 @@
     },
     "target-dir": "IgraalOSB/TwigAsseticFilterBundle",
     "extra": {
-        "branch-alias": "1.0-dev"
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
