@@ -57,7 +57,7 @@ class TwigFilter implements FilterInterface, HashableInterface
     
     public function hash()
     {
-        return md5(self::class);
+        return md5('IgraalOSB\TwigAsseticFilterBundle\Twig\Filter\TwigFilter');
     }
 
 }
