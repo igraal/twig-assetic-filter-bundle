@@ -32,7 +32,6 @@ use Assetic\Filter\HashableInterface;
 class TwigFilter implements FilterInterface, HashableInterface
 {
     private $twig;
-    private $loader;
 
     public function __construct(\Twig_Environment $twig)
     {
@@ -41,23 +40,16 @@ class TwigFilter implements FilterInterface, HashableInterface
 
     public function filterLoad(AssetInterface $asset)
     {
-        $loader = new \Twig_Loader_String();
-        $this->loader = $loader;
     }
 
     public function filterDump(AssetInterface $asset)
     {
-        $defaultLoader = $this->twig->getLoader();
-        $this->twig->setLoader($this->loader);
-
-        $asset->setContent($this->twig->render($asset->getContent()));
-
-        $this->twig->setLoader($defaultLoader);
+        $template = $this->twig->createTemplate($asset->getContent());
+        $asset->setContent($template->render(array()));
     }
     
     public function hash()
     {
         return 'IgraalOSB\TwigAsseticFilterBundle\Twig\Filter\TwigFilter';
     }
-
 }
