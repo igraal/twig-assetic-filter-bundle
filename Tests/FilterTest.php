@@ -25,19 +25,30 @@
 
 namespace IgraalOSB\TwigAsseticFilterBundle\Tests;
 
+use Assetic\Asset\StringAsset;
+use IgraalOSB\TwigAsseticFilterBundle\Twig\Filter\TwigFilter;
+
 class Test extends \PHPUnit_Framework_TestCase
 {
     public function testFilter()
     {
         // Create twig env
-        $twig = new \Twig_Environment(new \Twig_Loader_String());
+        $twig = new \Twig_Environment($this->getLoader());
         // Create twig filter
-        $filter = new \IgraalOSB\TwigAsseticFilterBundle\Twig\Filter\TwigFilter($twig);
+        $filter = new TwigFilter($twig);
 
         // Create sample asset
-        $asset = new \Assetic\Asset\StringAsset("{{ '<' | e('html') }}", array($filter));
+        $asset = new StringAsset("{{ '<' | e('html') }}", array($filter));
 
         // Test asset content
         $this->assertEquals('&lt;', $asset->dump());
+    }
+
+    /**
+     * @return \Twig_LoaderInterface
+     */
+    public function getLoader()
+    {
+        return $this->getMockForAbstractClass('\Twig_LoaderInterface');
     }
 }
