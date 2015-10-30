@@ -27,8 +27,9 @@ namespace IgraalOSB\TwigAsseticFilterBundle\Twig\Filter;
 
 use Assetic\Asset\AssetInterface;
 use Assetic\Filter\FilterInterface;
+use Assetic\Filter\HashableInterface;
 
-class TwigFilter implements FilterInterface
+class TwigFilter implements FilterInterface, HashableInterface
 {
     private $twig;
     private $loader;
@@ -52,6 +53,11 @@ class TwigFilter implements FilterInterface
         $asset->setContent($this->twig->render($asset->getContent()));
 
         $this->twig->setLoader($defaultLoader);
+    }
+    
+    public function hash()
+    {
+        return md5(self::class);
     }
 
 }
